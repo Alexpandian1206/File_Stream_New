@@ -67,7 +67,7 @@ async def private_receive_handler(c: Client, m: Message):
             if user.status == "kicked":
                 await c.send_message(
                     chat_id=m.chat.id,
-                    text="You are banned!\n\n  **Cᴏɴᴛᴀᴄᴛ Dᴇᴠᴇʟᴏᴘᴇʀ [𝙇𝙀𝙊 𝙏𝙂 🇮🇳 ℡](https://t.me/leotgadmin_bot) ʜᴇ Wɪʟʟ Hᴇʟᴘ Yᴏᴜ**",
+                    text="You are banned!\n\n  **Cᴏɴᴛᴀᴄᴛ Dᴇᴠᴇʟᴏᴘᴇʀ [ADMIN](https://t.me/Aklinksz_support_bot) ʜᴇ Wɪʟʟ Hᴇʟᴘ Yᴏᴜ**",
                     
                     disable_web_page_preview=True
                 )
@@ -81,7 +81,7 @@ async def private_receive_handler(c: Client, m: Message):
                         [
                             InlineKeyboardButton("Jᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Var.UPDATES_CHANNEL}")
                ],[
-InlineKeyboardButton("Tʀʏ Aɢᴀɪɴ 🔃", URL=f"http://t.me/filetolinkrio_bot?start")
+InlineKeyboardButton("Tʀʏ Aɢᴀɪɴ 🔃", URL=f"http://t.me/Aklinksz_stream_bot?start")
                         ]
                     ]
                 ),
@@ -92,7 +92,7 @@ InlineKeyboardButton("Tʀʏ Aɢᴀɪɴ 🔃", URL=f"http://t.me/filetolinkrio_bo
             await m.reply_text(e)
             await c.send_message(
                 chat_id=m.chat.id,
-                text="**Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍʏ ʙᴏss** [𝙇𝙀𝙊 𝙏𝙂 🇮🇳 ℡ ️️](https://t.me/leotgadmin_bot)",
+                text="**Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍʏ ʙᴏss** [ADMIN](https://t.me/Aklinksz_support_bot)",
                 
                 disable_web_page_preview=True)
             return
