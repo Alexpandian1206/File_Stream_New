@@ -55,14 +55,14 @@ async def start(b, m):
         except UserNotParticipant:
              await StreamBot.send_photo(
                 chat_id=m.chat.id,
-                photo="https://telegra.ph/file/9d94fc0af81234943e1a9.jpg",
+                photo="https://telegra.ph/file/d1f016c4d762d143b405f.jpg",
                 caption="<i>𝙹𝙾𝙸𝙽 CHANNEL 𝚃𝙾 𝚄𝚂𝙴 𝙼𝙴🔐</i>",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton("Jᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Var.UPDATES_CHANNEL}")
                ],[
-InlineKeyboardButton("Tʀʏ Aɢᴀɪɴ 🔃", URL=f"http://t.me/filetolinkrio_bot?start")
+InlineKeyboardButton("Tʀʏ Aɢᴀɪɴ 🔃", URL=f"http://t.me/Aklinksz_stream_bot?start")
                         ]
                     ]
                 ),
@@ -72,13 +72,13 @@ InlineKeyboardButton("Tʀʏ Aɢᴀɪɴ 🔃", URL=f"http://t.me/filetolinkrio_bo
         except Exception:
             await b.send_message(
                 chat_id=m.chat.id,
-                text="<i>𝓢𝓸𝓶𝓮𝓽𝓱𝓲𝓷𝓰 𝔀𝓮𝓷𝓽 𝔀𝓻𝓸𝓷𝓰</i> <b> <a href='https://t.me/TEAMRIO_SUPPORT_GROUP'>CLICK HERE FOR SUPPORT </a></b>",
+                text="<i>𝓢𝓸𝓶𝓮𝓽𝓱𝓲𝓷𝓰 𝔀𝓮𝓷𝓽 𝔀𝓻𝓸𝓷𝓰</i> <b> <a href='https://t.me/Aklinksz_Support_bot'>CLICK HERE FOR SUPPORT </a></b>",
                 
                 disable_web_page_preview=True)
             return
     await StreamBot.send_photo(
         chat_id=m.chat.id,
-        photo ="https://graph.org/file/ec30b2d64679c237b999c.jpg",
+        photo ="https://telegra.ph/file/d1f016c4d762d143b405f.jpg",
         caption =f'Hi {m.from_user.mention(style="md")}!,\nI am Telegram File to Link Generator Bot with Channel support.\nSend me any file and get a direct download link and streamable link.!',
         reply_markup=buttonz)
 
@@ -105,14 +105,14 @@ async def help_handler(bot, message):
         except UserNotParticipant:
             await StreamBot.send_photo(
                 chat_id=message.chat.id,
-                photo="https://graph.org/file/ec30b2d64679c237b999c.jpg",
+                photo="https://telegra.ph/file/d1f016c4d762d143b405f.jpg",
                 Caption="**𝙹𝙾𝙸𝙽 our  channel 𝚃𝙾 𝚄𝚂𝙴 ᴛʜɪs Bᴏᴛ!**\n\n__Dᴜᴇ ᴛᴏ Oᴠᴇʀʟᴏᴀᴅ, Oɴʟʏ Cʜᴀɴɴᴇʟ Sᴜʙsᴄʀɪʙᴇʀs ᴄᴀɴ ᴜsᴇ ᴛʜᴇ Bᴏᴛ!__",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton("Jᴏɪɴ ɴᴏᴡ 🔓", url=f"https://t.me/{Var.UPDATES_CHANNEL}")
                ],[
-InlineKeyboardButton("Tʀʏ Aɢᴀɪɴ 🔃", URL=f"http://t.me/filetolinkrio_bot?start")
+InlineKeyboardButton("Tʀʏ Aɢᴀɪɴ 🔃", URL=f"http://t.me/Aklinksz_stream_bot?start")
                         ]
                     ]
                 ),
@@ -122,18 +122,19 @@ InlineKeyboardButton("Tʀʏ Aɢᴀɪɴ 🔃", URL=f"http://t.me/filetolinkrio_bo
         except Exception:
             await bot.send_message(
                 chat_id=message.chat.id,
-                text="__Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍᴇ__ [LEO TG](https://telegram.me/leotgadmin_bot).",
+                text="__Sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ Wʀᴏɴɢ. Cᴏɴᴛᴀᴄᴛ ᴍᴇ__ [ADMIN](https://telegram.me/aklinksz_admin).",
                 disable_web_page_preview=True)
             return
     await message.reply_text(
         text="""<b> Send me any file or video i will give you streamable link and download link.</b>\n
-<b> I also support Channels, add me to you Channel and send any media files and see miracle✨ also send /list to know all commands""",
+<b> I also support Channels, add me to you Channel and send any media files and see miracle✨ also send /list to know all commands.</b>\n
+JOIN 👉🏻 @AKLINKSZ ✨""",
         
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("💁‍♂️ DEVELOPER", url="https://t.me/leotgadmin_bot")],
-                [InlineKeyboardButton("💥 Our Movie Bot", url="https://t.me/tamilmovies4Krio_bot")]
+                [InlineKeyboardButton("💁‍♂️ DEVELOPER", url="https://t.me/aklinksz_admin")],
+                [InlineKeyboardButton("💥 Our Movie Bot", url="https://t.me/Sunny_leone_Filter_bot")]
             ]
         )
     )
