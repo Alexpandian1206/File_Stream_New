@@ -295,42 +295,45 @@
     </footer>
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
         <script>
-        const controls = [
-              'play-large',
-              'rewind',
-              'play', 
-              'fast-forward', 
-              'progress', 
-              'current-time',
-              'duration',
-              'mute',
-              'captions',
-              'settings',
-              'pip',
-              'airplay',
-              'fullscreen'
-            ];
-        document.addEventListener('DOMContentLoaded', () => {
-            const player = Plyr.setup('.player', { controls });
-        });
+        const<link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css" type="text/css">
 
-        const body = document.querySelector('body');
-        const footer = document.querySelector('footer');
-        const toogle = document.querySelector('.toogle');
-    </script>
-        <script src="js/wow.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
-    <script>
-        var div = document.getElementById('myDiv');
-        var text = div.textContent;
+<div class="fluid-player" id="my-video"></div>
 
-        if(text.length > 60){
-            div.textContent = text.slice(0, 60)+"....";
-        }
+<script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+<script>
+  fluidPlayer('my-video', {
+    layoutControls: {
+      preload: 'auto',
+      primaryColor: '#000',
+      posterImage: '',
+      controlBar: {
+        autoHide: false,
+        animated: false,
+      },
+    },
+    vastOptions: {
+      adList: [{ 
+        roll: 'preRoll', 
+        vastTag: 'URL_TO_YOUR_VAST_TAG'
+      }]
+    }
+  });
+</script>
 
-    </script>
+<script src="js/wow.min.js"></script>
+<script>
+  new WOW().init();
+</script>
+
+<script>
+  var div = document.getElementById('myDiv');
+  var text = div.textContent;
+
+  if (text.length > 60) {
+    div.textContent = text.slice(0, 60) + "....";
+  }
+</script>
+
 
         <!-- disabling right click -->
     <script>
