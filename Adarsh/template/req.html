@@ -293,17 +293,15 @@
                 All right reserved
             </div>   
     </footer>
+	<!-------------- Video Player Code -------------->
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-        <script>
-        const<link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css" type="text/css">
-
-<div class="fluid-player" id="my-video"></div>
-
-<link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css" type="text/css">
 
 <div class="fluid-player" id="my-video"></div>
 
 <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+<script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+
 <script>
   const controls = [
     'play-large',
@@ -318,7 +316,8 @@
     'settings',
     'pip',
     'airplay',
-    'fullscreen'
+    'fullscreen',
+    'chromecast'  // Add 'chromecast' control for Chromecast support
   ];
 
   document.addEventListener('DOMContentLoaded', () => {
