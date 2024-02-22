@@ -299,25 +299,35 @@
 
 <div class="fluid-player" id="my-video"></div>
 
+<link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css" type="text/css">
+
+<div class="fluid-player" id="my-video"></div>
+
 <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
 <script>
-  fluidPlayer('my-video', {
-    layoutControls: {
-      preload: 'auto',
-      primaryColor: '#000',
-      posterImage: '',
-      controlBar: {
-        autoHide: false,
-        animated: false,
-      },
-    },
-    vastOptions: {
-      adList: [{ 
-        roll: 'preRoll', 
-        vastTag: 'URL_TO_YOUR_VAST_TAG'
-      }]
-    }
+  const controls = [
+    'play-large',
+    'rewind',
+    'play', 
+    'fast-forward', 
+    'progress', 
+    'current-time',
+    'duration',
+    'mute',
+    'captions',
+    'settings',
+    'pip',
+    'airplay',
+    'fullscreen'
+  ];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const player = fluidPlayer('my-video', { controls });
   });
+
+  const body = document.querySelector('body');
+  const footer = document.querySelector('footer');
+  const toogle = document.querySelector('.toogle');
 </script>
 
 <script src="js/wow.min.js"></script>
@@ -334,25 +344,53 @@
   }
 </script>
 
+<!-- Disabling right click -->
+<script>
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  });
 
-        <!-- disabling right click -->
-    <script>
-        document.addEventListener("contextmenu", function (e) {
-        e.preventDefault();
-    });
-    document.addEventListener('keydown', function (e) {
-        if (
-            e.key === 'F12' ||
-            (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-            (e.ctrlKey && e.key === 'u') ||
-            e.ctrlKey ||
-            e.shiftKey ||
-            e.altKey
-        ) {
-            e.preventDefault();
-        }
-    });
-    </script>
+  document.addEventListener('keydown', function (e) {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+      (e.ctrlKey && e.key === 'u') ||
+      e.ctrlKey ||
+      e.shiftKey ||
+      e.altKey
+    ) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+<!-- External Video Player Scripts -->
+<script>
+  // Modify these functions based on your specific use case
+  function customVideoPlayer1() {
+    // Your custom video player logic here
+  }
+
+  function customVideoPlayer2() {
+    // Your custom video player logic here
+  }
+
+  // Add more functions if needed
+</script>
+
+<script type='text/javascript' src='//pl22519627.profitablegatecpm.com/33/02/2e/33022e0c5f8e5f97e5fe82387e2db828.js'></script>
+
+</body>
+</html>
+Replace customVideoPlayer1 and customVideoPlayer2 with the actual logic for opening video players as needed. This script assumes you want to maintain the existing external video player functionality. Adjust it further if required.
+
+
+
+
+
+Message ChatGPT…
+
+ChatGPT can make mistakes. Consider checking important 
 
         <!--Externel Video Player Script -->
     <script>
