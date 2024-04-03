@@ -1,3 +1,4 @@
+
 # (c) adarsh-goel
 import os
 from os import getenv, environ
@@ -12,6 +13,7 @@ class Var(object):
     API_ID = int(getenv('API_ID', ''))
     API_HASH = str(getenv('API_HASH', ''))
     BOT_TOKEN = str(getenv('BOT_TOKEN', ''))
+    FILE_BOT_TOKEN = str(getenv('FILE_BOT_TOKEN', ''))
     name = str(getenv('name', 'filetolinkbot'))
     SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
     WORKERS = int(getenv('WORKERS', '4'))
@@ -38,3 +40,6 @@ class Var(object):
     DATABASE_URL = str(getenv('DATABASE_URL', 'mongodb+srv://batowaw488:0553569303@cluster0.76wnfl2.mongodb.net/?retryWrites=true&w=majority'))
     UPDATES_CHANNEL = str(getenv('UPDATES_CHANNEL', None))
     BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1001362659779")).split())) 
+    DB_URI = str(getenv('DB_URI', 'mongodb+srv://batowaw488:0553569303@cluster0.76wnfl2.mongodb.net/?retryWrites=true&w=majority'))
+    DB_NAME = str(getenv("DB_NAME", "filesharebot"))
+    SECOND_BOTUSERNAME = str(getenv("SECOND_BOTUSERNAME", "FileRenamer4GbBot"))
