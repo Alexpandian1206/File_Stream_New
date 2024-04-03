@@ -42,4 +42,4 @@ class Var(object):
     BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1001362659779")).split())) 
     DB_URI = str(getenv('DB_URI', 'mongodb+srv://batowaw488:0553569303@cluster0.76wnfl2.mongodb.net/?retryWrites=true&w=majority'))
     DB_NAME = str(getenv("DB_NAME", "filesharebot"))
-    SECOND_BOTUSERNAME = str(getenv("SECOND_BOTUSERNAME", "FileRenamer4GbBot"))
+    SECOND_BOTUSERNAME = str(getenv("SECOND_BOTUSERNAME", "Files_123_bot"))
