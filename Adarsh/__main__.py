@@ -11,6 +11,7 @@ from .bot import StreamBot
 from .vars import Var
 from aiohttp import web
 from .server import web_server
+from bot import app
 from .utils.keepalive import ping_server
 from Adarsh.bot.clients import initialize_clients
 
@@ -25,6 +26,7 @@ logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
 ppath = "Adarsh/bot/plugins/*.py"
 files = glob.glob(ppath)
 StreamBot.start()
+app.start()
 loop = asyncio.get_event_loop()
 
 
