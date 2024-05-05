@@ -53,7 +53,7 @@ async def media_watch(id):
 async def batch_page(message_id_x, message_id_y):
     links = []
     for i in range(message_id_x, message_id_y + 1):
-        link = f"Var.URL/watch/{i}"
+        link = f"{Var.URL}/watch/{i}"
         links.append(link)
     html_code = """
     <html>
