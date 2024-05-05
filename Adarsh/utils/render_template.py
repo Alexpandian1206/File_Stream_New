@@ -49,3 +49,29 @@ async def media_watch(id):
     else:
         html = '<h1>This is not streamable file</h1>'
     return html
+
+async def batch_page(message_id_x, message_id_y):
+    links = []
+    for i in range(message_id_x, message_id_y + 1):
+        link = f"Var.URL/watch/{i}"
+        links.append(link)
+    html_code = """
+    <html>
+    <head>
+        <title>links </title>
+    </head>
+    <body>
+        <div>
+            <h1>Links</h1>
+            <ul>
+                {}
+            </ul>
+        </div>
+    </body>
+    </html>
+    """.format('\n'.join([f'<li><a href="{link}">{link}</a></li>' for link in links]))
+
+    return html_code
+    
+    
+    
