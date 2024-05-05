@@ -7,7 +7,6 @@ import urllib.parse
 import aiofiles
 import logging
 import aiohttp
-import jinja2
 from jinja2 import Environment, FileSystemLoader
 
 
