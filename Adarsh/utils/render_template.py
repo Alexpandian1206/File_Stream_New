@@ -60,7 +60,7 @@ async def batch_page(message_id_x, message_id_y):
     async with aiofiles.open('Adarsh/template/batch.html') as r:
         template = await r.read()
 
-    links_html = '\n'.join([f'<li><a href="{link}">{link}</a></li>' for link in links])
+    buttons_html = '\n'.join([f'<form action="{link}" method="get"><button class="button" type="submit">{link}</button></form>' for link in links])
     html_code = template.replace('{links_placeholder}', links_html)
 
     return html_code
