@@ -7,8 +7,6 @@ import urllib.parse
 import aiofiles
 import logging
 import aiohttp
-from jinja2 import Environment, FileSystemLoader
-
 
 async def render_page(id, secure_hash):
     file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
@@ -56,14 +54,14 @@ async def media_watch(id):
 async def batch_page(message_id_x, message_id_y):
     links = []
     for i in range(message_id_x, message_id_y + 1):
-        link = f"{Var.URL}watch/{i}"
+        link = f"{Var.URL}/watch/{i}"
         links.append(link)
-    
-    
-    env = Environment(loader=FileSystemLoader('Adarsh/template'))
-    template = env.get_template('batch.html')
-    
-    html_code = template.render(links=links)
+
+    async with aiofiles.open('Adarsh/template/batch.html') as r:
+        template = await r.read()
+
+    links_html = '\n'.join([f'<li><a href="{link}">{link}</a></li>' for link in links])
+    html_code = template.replace('{links_placeholder}', links_html)
 
     return html_code
 
