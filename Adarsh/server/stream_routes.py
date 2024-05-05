@@ -14,7 +14,7 @@ from Adarsh.server.exceptions import FIleNotFound, InvalidHash
 from Adarsh import StartTime, __version__
 from ..utils.time_format import get_readable_time
 from ..utils.custom_dl import ByteStreamer
-from Adarsh.utils.render_template import render_page, media_watch
+from Adarsh.utils.render_template import render_page, media_watch, batch_page
 from Adarsh.vars import Var
 from flask import Flask, render_template
 
