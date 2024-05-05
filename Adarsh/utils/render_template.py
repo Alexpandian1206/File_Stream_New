@@ -34,3 +34,17 @@ async def render_page(id, secure_hash):
                     file_size = humanbytes(int(u.headers.get('Content-Length')))
                     html = (await r.read()) % (heading, file_data.file_name, src, file_size)
     return html
+
+async def media_watch(id):
+    file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
+    file_name, mime_type = file_data.file_name, file_data.mime_type
+    src = urllib.parse.urljoin(Var.URL, f'{str(id)}')
+    tag = file_data.mime_type.split('/')[0].strip()
+    if tag == 'video':
+        async with aiofiles.open('Adarsh/template/req.html') as r:
+            heading = 'Watch - {}'.format(file_name)
+            tag = file_data.mime_type.split('/')[0].strip()
+            html = (await r.read()).replace('tag', tag) % (heading, file_name, src)
+    else:
+        html = '<h1>This is not streamable file</h1>'
+    return html
