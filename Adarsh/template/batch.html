@@ -6,9 +6,13 @@
     <title>Batch Links</title>
 </head>
 <body>
-    <h1>Batch Links</h1>
-    {% for link in links %}
-        <button onclick="window.location.href='{{ link }}'">Link {{ loop.index }}</button><br>
-    {% endfor %}
+    <div>
+        <h1>Links</h1>
+        <ul>
+            {% for link in links %}
+                <li><a href="{{ link }}">{{ link }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
