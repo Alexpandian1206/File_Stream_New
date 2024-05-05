@@ -16,7 +16,7 @@ from ..utils.time_format import get_readable_time
 from ..utils.custom_dl import ByteStreamer
 from Adarsh.utils.render_template import render_page, media_watch
 from Adarsh.vars import Var
-
+from flask import Flask, render_template
 
 routes = web.RouteTableDef()
 
@@ -39,6 +39,11 @@ async def root_route_handler(_):
     )
 
 
+
+@routes.get('/batch/<int:message_id_x>/<int:message_id_y>')
+async def batch_links(message_id_x, message_id_y):
+    return web.Response(text=await batch_page(message_id_x, message_id_y), content_type='text/html')
+    
 @routes.get(r"/watch/{path:\S+}", allow_head=True)
 async def stream_handler(request: web.Request):
     try:
