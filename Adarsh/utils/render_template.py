@@ -53,25 +53,12 @@ async def media_watch(id):
 async def batch_page(message_id_x, message_id_y):
     links = []
     for i in range(message_id_x, message_id_y + 1):
-        link = f"{Var.URL}/watch/{i}"
+        link = f"{Var.URL}watch/{i}"
         links.append(link)
-    html_code = """
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Batch Links</title>
-    </head>   
-    <body>
-        <div>
-            <h1>Links</h1>
-            <ul>
-                {}
-            </ul>
-        </div>
-    </body>
-    </html>
-    """.format('\n'.join([f'<li><a href="{link}">{link}</a></li>' for link in links]))
+    async with aiofiles.open('Adarsh/template/batch.html') as r:
+        template = await r.read()
+    
+    html_code = template.render(links=links)
 
     return html_code
     
