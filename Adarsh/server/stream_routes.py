@@ -40,11 +40,14 @@ async def root_route_handler(_):
 
 
 
-@routes.get('/batch/message_id_x/message_id_y', allow_head=True)
-async def batch_links(message_id_x, message_id_y):
+@routes.get('/batch/{message_id_x}/{message_id_y}', allow_head=True)
+async def batch_links(request):
+    message_id_x = int(request.match_info['message_id_x'])
+    message_id_y = int(request.match_info['message_id_y'])
+    batch_html = await batch_page(message_id_x, message_id_y)
+    return web.Response(text=batch_html, content_type='text/html')
     
-    return web.Response(text=await batch_page(message_id_x, message_id_y), content_type='text/html')
-    
+        
 @routes.get(r"/watch/{path:\S+}", allow_head=True)
 async def stream_handler(request: web.Request):
     try:
