@@ -58,8 +58,10 @@ async def batch_page(message_id_x, message_id_y):
     html_code = """
     <html>
     <head>
-        <title>links </title>
-    </head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Batch Links</title>
+    </head>   
     <body>
         <div>
             <h1>Links</h1>
