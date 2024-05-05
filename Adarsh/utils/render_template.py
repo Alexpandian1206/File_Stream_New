@@ -35,7 +35,7 @@ async def render_page(id, secure_hash):
     return html
 
 async def media_watch(id):
-    file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
+    file_data=await get_file_ids(StreamBot, int(Var.BATCH_CHANNEL), int(id))
     file_name, mime_type = file_data.file_name, file_data.mime_type
     secure_hash = file_data.unique_id[:6]
     src = urllib.parse.urljoin(Var.URL, f'{secure_hash}{str(id)}')
