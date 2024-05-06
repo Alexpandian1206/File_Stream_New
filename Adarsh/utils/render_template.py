@@ -54,9 +54,9 @@ async def media_watch(id):
 async def batch_page(message_id_x, message_id_y):
     links_with_names = []
     for i in range(message_id_x, message_id_y + 1):
-        file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(str(id)))
+        file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(i))
         secure_hash = file_data.unique_id[:6]
-        link = urllib.parse.urljoin(Var.URL, f'{secure_hash}{str(id)}')
+        link = f"{Var.URL}watch/{i}"
         file_name = file_data.file_name
         links_with_names.append((file_name, link, secure_hash))
 
