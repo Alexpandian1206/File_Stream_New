@@ -55,7 +55,8 @@ async def batch_page(message_id_x, message_id_y):
     links_with_names = []
     for i in range(message_id_x, message_id_y + 1):
         file_data = await get_file_ids(StreamBot, int(Var.BATCH_CHANNEL), int(i))
-        link = f"{Var.URL}watch/{i}"
+        secure_hash = file_data.unique_id[:6]
+        link = f"{Var.URL}watch/{i}/?hash={secure_hash}"
         file_name = file_data.file_name
         links_with_names.append((file_name, link))
 
