@@ -58,7 +58,7 @@ async def batch_page(message_id_x, message_id_y):
         secure_hash = file_data.unique_id[:6]
         link = f"{Var.URL}watch/{i}"
         # Convert file name to title format
-        file_name = file_data.file_name.replace('_', ' ').title()
+        file_name = re.sub(r'[-_.]', ' ', file_data.file_name).title()
         links_with_names.append((file_name, link))
 
     async with aiofiles.open('Adarsh/template/batch.html') as r:
