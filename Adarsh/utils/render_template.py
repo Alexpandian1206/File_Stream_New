@@ -56,8 +56,8 @@ async def batch_page(message_id_x, message_id_y):
     for i in range(message_id_x, message_id_y + 1):
         file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(i))
         secure_hash = file_data.unique_id[:6]
-        link = f"{Var.URL}watch/{i}"
         file_name = file_data.file_name
+        link = f"{Var.URL}watch/{i}/{file_name}?hash={secure_hash}"        
         links_with_names.append((file_name, link, secure_hash))
 
     async with aiofiles.open('Adarsh/template/batch.html') as r:
