@@ -1,6 +1,8 @@
 # Taken from megadlbot_oss <https://github.com/eyaadh/megadlbot_oss/blob/master/mega/webserver/routes.py>
 # Thanks to Eyaadh <https://github.com/eyaadh>
 
+# (c) github - @Rishikesh-Sharma09 ,telegram - @Rk_botz
+
 import re
 import time
 import math
@@ -14,7 +16,7 @@ from Adarsh.server.exceptions import FIleNotFound, InvalidHash
 from Adarsh import StartTime, __version__
 from ..utils.time_format import get_readable_time
 from ..utils.custom_dl import ByteStreamer
-from Adarsh.utils.render_template import render_page
+from Adarsh.utils.render_template import render_page, media_watch, batch_page
 from Adarsh.vars import Var
 
 
@@ -39,6 +41,15 @@ async def root_route_handler(_):
     )
 
 
+
+@routes.get('/batch/{message_id_x}/{message_id_y}', allow_head=True)
+async def batch_links(request):
+    message_id_x = int(request.match_info['message_id_x'])
+    message_id_y = int(request.match_info['message_id_y'])
+    batch_html = await batch_page(message_id_x, message_id_y)
+    return web.Response(text=batch_html, content_type='text/html')
+    
+        
 @routes.get(r"/watch/{path:\S+}", allow_head=True)
 async def stream_handler(request: web.Request):
     try:
@@ -52,7 +63,13 @@ async def stream_handler(request: web.Request):
             secure_hash = request.rel_url.query.get("hash")
         return web.Response(text=await render_page(id, secure_hash), content_type='text/html')
     except InvalidHash as e:
-        raise web.HTTPForbidden(text=e.message)
+        path = request.match_info["path"]
+        match = re.search(r"^([a-zA-Z0-9_-]{6})(\d+)$", path)
+        if match:
+            id = int(match.group(2))
+        else:
+            id = int(re.search(r"(\d+)(?:\/\S+)?", path).group(1))
+        return web.Response(text=await media_watch(id), content_type='text/html')
     except FIleNotFound as e:
         raise web.HTTPNotFound(text=e.message)
     except (AttributeError, BadStatusLine, ConnectionResetError):
@@ -74,7 +91,13 @@ async def stream_handler(request: web.Request):
             secure_hash = request.rel_url.query.get("hash")
         return await media_streamer(request, id, secure_hash)
     except InvalidHash as e:
-        raise web.HTTPForbidden(text=e.message)
+        path = request.match_info["path"]
+        match = re.search(r"^([a-zA-Z0-9_-]{6})(\d+)$", path)
+        if match:
+            id = int(match.group(2))
+        else:
+            id = int(re.search(r"(\d+)(?:\/\S+)?", path).group(1))
+        return web.Response(text=await media_watch(id), content_type='text/html')
     except FIleNotFound as e:
         raise web.HTTPNotFound(text=e.message)
     except (AttributeError, BadStatusLine, ConnectionResetError):

@@ -1,3 +1,4 @@
+# (c) github - @Rishikesh-Sharma09 ,telegram - @Rk_botz
 from Adarsh.vars import Var
 from Adarsh.bot import StreamBot
 from Adarsh.utils.human_readable import humanbytes
@@ -7,7 +8,7 @@ import urllib.parse
 import aiofiles
 import logging
 import aiohttp
-
+import re
 
 async def render_page(id, secure_hash):
     file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
@@ -34,3 +35,46 @@ async def render_page(id, secure_hash):
                     file_size = humanbytes(int(u.headers.get('Content-Length')))
                     html = (await r.read()) % (heading, file_data.file_name, src, file_size)
     return html
+
+async def media_watch(id):
+    file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
+    file_name, mime_type = file_data.file_name, file_data.mime_type
+    secure_hash = file_data.unique_id[:6]
+    src = urllib.parse.urljoin(Var.URL, f'{secure_hash}{str(id)}')
+    tag = file_data.mime_type.split('/')[0].strip()
+    if tag == 'video':
+        async with aiofiles.open('Adarsh/template/req.html') as r:
+            heading = 'Watch - {}'.format(file_name)
+            tag = file_data.mime_type.split('/')[0].strip()
+            html = (await r.read()).replace('tag', tag) % (heading, file_name, src)
+    else:
+        html = '<h1>This is not streamable file</h1>'
+    return html
+
+
+
+async def batch_page(message_id_x, message_id_y):
+    links_with_names = []
+    for i in range(message_id_x, message_id_y + 1):
+        file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(i))
+        secure_hash = file_data.unique_id[:6]
+        link = f"{Var.URL}watch/{i}"
+        # Convert file name to title format
+        file_name = re.sub(r'[-_.]', ' ', file_data.file_name).title()
+        links_with_names.append((file_name, link))
+
+    async with aiofiles.open('Adarsh/template/batch.html') as r:
+        template = await r.read()
+
+    buttons_html = ''
+    for file_name, link in links_with_names:
+        buttons_html += f'<form action="{link}" method="get"><button style="font-size: 20px; background-color: skyblue; border-radius: 10px;" class="button" type="submit">{file_name}</button></form>\n<br><p>&nbsp</p>'
+    html_code = template.replace('{links_placeholder}', buttons_html)
+    
+    return html_code
+
+
+    
+    
+    
+    
