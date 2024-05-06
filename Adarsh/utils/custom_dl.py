@@ -52,7 +52,7 @@ class ByteStreamer:
         try:
             file_id = await get_file_ids(self.client, Var.BIN_CHANNEL, id)
         except Exception as e:
-            print(f"{e}")
+            file_id = await get_file_ids(self.client, Var.BATCH_CHANNEL, id)
         logging.debug(f"Generated file ID and Unique ID for message with ID {id}")
         if not file_id:
             logging.debug(f"Message with ID {id} not found")
