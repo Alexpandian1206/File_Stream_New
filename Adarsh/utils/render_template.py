@@ -7,6 +7,7 @@ import urllib.parse
 import aiofiles
 import logging
 import aiohttp
+import re
 
 async def render_page(id, secure_hash):
     file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
