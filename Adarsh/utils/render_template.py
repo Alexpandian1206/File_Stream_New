@@ -55,7 +55,7 @@ async def batch_page(message_id_x, message_id_y):
     links_with_names = []
     for i in range(message_id_x, message_id_y + 1):
         file_data = await get_file_ids(StreamBot, int(Var.BATCH_CHANNEL), int(i))
-        link = f"{Var.URL}/watch/{i}"
+        link = f"{Var.URL}watch/{i}"
         file_name = file_data.file_name
         links_with_names.append((file_name, link))
 
@@ -64,9 +64,9 @@ async def batch_page(message_id_x, message_id_y):
 
     buttons_html = ''
     for file_name, link in links_with_names:
-        buttons_html += f'<form action="{link}" method="get"><button class="button" type="submit">{file_name}</button></form>\n\n'
+        buttons_html += f'<form action="{link}" method="get"><button style="font-size: 20px; background-color: skyblue; border-radius: 10px;" class="button" type="submit">{file_name}</button></form>\n<br><p>&nbsp</p>'
     html_code = template.replace('{links_placeholder}', buttons_html)
-
+    
     return html_code
 
 
