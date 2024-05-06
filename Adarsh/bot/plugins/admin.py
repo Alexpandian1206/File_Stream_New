@@ -134,7 +134,7 @@ async def gen_link_batch(bot, message):
     for msg_id in range(start, end + 1):
         try:
             # Fetch the message by its ID
-            msg = await client.get_messages(Var.BATCH_CHANNEL, message_ids=msg_id)
+            msg = await bot.get_messages(Var.BATCH_CHANNEL, message_ids=msg_id)
             # Forward the message to the destination channel
             await msg.copy(Var.BIN_CHANNEL)
         except Exception as e:
