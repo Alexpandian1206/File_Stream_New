@@ -135,12 +135,12 @@ async def gen_link_batch(bot, message):
     for msg_id in range(start, end + 1):
         try:
             # Fetch the message by its ID
-            msg = await bot.get_messages(Var.BATCH_CHANNEL, message_ids=msg_id)
+            msg = await bot.get_messages(int(f_chat_id), message_ids=msg_id)
             # Forward the message to the destination channel
-            await msg.copy(Var.BIN_CHANNEL)
-            forwarded_message_ids.append(msg.id)
+            post = await msg.copy(Var.BIN_CHANNEL)
+            forwarded_message_ids.append(post.id)
         except Exception as e:
             print(f"Failed to forward message with ID {msg_id}: {e}")
     id_1 = min(forwarded_message_ids)
     id_2 = max(forwarded_message_ids)
-    await sts.edit(f"<b>Here is your batch link\n\n👉{Var.URL}/batch/{id_1}/{id_2} .</b>")
+    await sts.edit(f"<b>Here is your batch link\n\n👉{Var.URL}batch/{id_1}/{id_2} .</b>")
