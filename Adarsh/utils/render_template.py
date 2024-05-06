@@ -52,15 +52,19 @@ async def media_watch(id):
 
 
 async def batch_page(message_id_x, message_id_y):
-    links = []
+    links_with_names = []
     for i in range(message_id_x, message_id_y + 1):
-        link = f"{Var.URL}watch/{i}"
-        links.append(link)
+        file_data = await get_file_ids(StreamBot, int(Var.BATCH_CHANNEL), int(i))
+        link = f"{Var.URL}/watch/{i}"
+        file_name = file_data.file_name
+        links_with_names.append((file_name, link))
 
     async with aiofiles.open('Adarsh/template/batch.html') as r:
         template = await r.read()
 
-    buttons_html = '\n'.join([f'<form action="{link}" method="get"><button class="button" type="submit">{link}</button></form>' for link in links])
+    buttons_html = ''
+    for file_name, link in links_with_names:
+        buttons_html += f'<form action="{link}" method="get"><button class="button" type="submit">{file_name}</button></form>\n\n'
     html_code = template.replace('{links_placeholder}', buttons_html)
 
     return html_code
