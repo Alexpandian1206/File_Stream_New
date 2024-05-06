@@ -56,17 +56,17 @@ async def batch_page(message_id_x, message_id_y):
     for i in range(message_id_x, message_id_y + 1):
         file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(i))
         secure_hash = file_data.unique_id[:6]
-        file_name = file_data.file_name
-        link = f"{Var.URL}watch/{i}"       
-        filez_name = file_data.file_name.replace('_', ' ').title()
-        links_with_names.append((filez_name, link, secure_hash))
+        link = f"{Var.URL}watch/{i}"
+        # Convert file name to title format
+        file_name = file_data.file_name.replace('_', ' ').title()
+        links_with_names.append((file_name, link))
 
     async with aiofiles.open('Adarsh/template/batch.html') as r:
         template = await r.read()
 
     buttons_html = ''
-    for filez_name, link in links_with_names:
-        buttons_html += f'<form action="{link}" method="get"><button style="height:200px; width:200px; font-size: 20px; background-color: skyblue; border-radius: 15px;" class="button" type="submit">{filez_name}</button></form>\n<br><p>&nbsp</p>'
+    for file_name, link in links_with_names:
+        buttons_html += f'<form action="{link}" method="get"><button style="font-size: 20px; background-color: skyblue; border-radius: 10px;" class="button" type="submit">{file_name}</button></form>\n<br><p>&nbsp</p>'
     html_code = template.replace('{links_placeholder}', buttons_html)
     
     return html_code
