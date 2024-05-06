@@ -93,8 +93,7 @@ async def broadcast_(c, m):
     os.remove('broadcast.txt')
     
 @StreamBot.on_message(filters.command("batch") & filters.private & filters.user(list(Var.OWNER_ID)))
-async def sts(c: Client, m: Message):
-   async def gen_link_batch(bot, message):
+async def gen_link_batch(bot, message):
     if " " not in message.text:
         return await message.reply("Use correct format.\nExample <code>/batch https://t.me/123456789/3 https://t.me/123456789/9</code>.")
     links = message.text.strip().split(" ")
