@@ -141,6 +141,6 @@ async def gen_link_batch(bot, message):
             forwarded_message_ids.append(msg.id)
         except Exception as e:
             print(f"Failed to forward message with ID {msg_id}: {e}")
-   id_1 = min(forwarded_message_ids)
-   id_2 = max(forwarded_message_ids)
-   await sts.edit(f"<b>Here is your batch link\n\n👉{Var.URL}/batch/{id_1}/{id_2} .</b>")
+    id_1 = min(forwarded_message_ids)
+    id_2 = max(forwarded_message_ids)
+    await sts.edit(f"<b>Here is your batch link\n\n👉{Var.URL}/batch/{id_1}/{id_2} .</b>")
