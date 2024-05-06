@@ -1,4 +1,5 @@
 # (c) @adarsh-goel
+# (c) github - @Rishikesh-Sharma09
 import os
 import time
 import string
@@ -6,12 +7,14 @@ import random
 import asyncio
 import aiofiles
 import datetime
+import re
 from Adarsh.utils.broadcast_helper import send_msg
 from Adarsh.utils.database import Database
 from Adarsh.bot import StreamBot
 from Adarsh.vars import Var
 from pyrogram import filters, Client
 from pyrogram.types import Message
+from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, UsernameInvalid, UsernameNotModified
 db = Database(Var.DATABASE_URL, Var.name)
 Broadcast_IDs = {}
 
@@ -88,3 +91,43 @@ async def broadcast_(c, m):
             quote=True
         )
     os.remove('broadcast.txt')
+    
+@StreamBot.on_message(filters.command("batch") & filters.private & filters.user(list(Var.OWNER_ID)))
+async def sts(c: Client, m: Message):
+   async def gen_link_batch(bot, message):
+    if " " not in message.text:
+        return await message.reply("Use correct format.\nExample <code>/batch https://t.me/123456789/3 https://t.me/123456789/9</code>.")
+    links = message.text.strip().split(" ")
+    if len(links) != 3:
+        return await message.reply("Use correct format.\nExample <code>/batch https://t.me/123456789/3 https://t.me/123456789/9</code>.")
+    cmd, first, last = links
+    regex = re.compile("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")
+    match = regex.match(first)
+    if not match:
+        return await message.reply('Invalid link')
+    f_chat_id = match.group(4)
+    f_msg_id = int(match.group(5))
+    if f_chat_id.isnumeric():
+        f_chat_id  = int(("-100" + f_chat_id))
+
+    match = regex.match(last)
+    if not match:
+        return await message.reply('Invalid link')
+    l_chat_id = match.group(4)
+    l_msg_id = int(match.group(5))
+    if l_chat_id.isnumeric():
+        l_chat_id  = int(("-100" + l_chat_id))
+
+    if f_chat_id != l_chat_id:
+        return await message.reply("Chat ids not matched.")
+    try:
+        chat_id = (await bot.get_chat(f_chat_id)).id
+    except ChannelInvalid:
+        return await message.reply('This may be a private channel / group. Make me an admin over there to index the files.')
+    except (UsernameInvalid, UsernameNotModified):
+        return await message.reply('Invalid Link specified.')
+    except Exception as e:
+        return await message.reply(f'Errors - {e}')
+
+    sts = await message.reply("Generating link for your message.\nThis may take time depending upon number of messages")
+    
