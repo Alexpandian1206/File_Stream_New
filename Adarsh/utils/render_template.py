@@ -61,7 +61,7 @@ async def batch_page(message_id_x, message_id_y):
         template = await r.read()
 
     buttons_html = '\n'.join([f'<form action="{link}" method="get"><button class="button" type="submit">{link}</button></form>' for link in links])
-    html_code = template.replace('{links_placeholder}', links_html)
+    html_code = template.replace('{links_placeholder}', buttons_html)
 
     return html_code
 
