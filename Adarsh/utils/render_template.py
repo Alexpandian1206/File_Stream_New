@@ -56,6 +56,7 @@ async def media_watch(id):
 async def batch_page(message_id):
     GetMessage = await StreamBot.get_messages(chat_id=Var.BATCH_CHANNEL, message_ids=message_id)
     message_ids = GetMessage.text.split(" ")
+    print(f"{message_ids}")
     links_with_names = []
     for i in range(len(message_ids)):
         file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(i))
