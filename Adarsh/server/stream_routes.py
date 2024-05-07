@@ -42,11 +42,10 @@ async def root_route_handler(_):
 
 
 
-@routes.get('/batch/{message_id_x}/{message_id_y}', allow_head=True)
+@routes.get('/batch/{message_id}', allow_head=True)
 async def batch_links(request):
-    message_id_x = int(request.match_info['message_id_x'])
-    message_id_y = int(request.match_info['message_id_y'])
-    batch_html = await batch_page(message_id_x, message_id_y)
+    message_id_x = int(request.match_info['message_id'])    
+    batch_html = await batch_page(message_id)
     return web.Response(text=batch_html, content_type='text/html')
     
         
