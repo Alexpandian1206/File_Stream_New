@@ -44,7 +44,7 @@ async def root_route_handler(_):
 
 @routes.get('/batch/{message_id}', allow_head=True)
 async def batch_links(request):
-    message_id_x = int(request.match_info['message_id'])    
+    message_id = int(request.match_info['message_id'])    
     batch_html = await batch_page(message_id)
     return web.Response(text=batch_html, content_type='text/html')
     
@@ -96,7 +96,7 @@ async def stream_handler(request: web.Request):
             id = int(match.group(2))
         else:
             id = int(re.search(r"(\d+)(?:\/\S+)?", path).group(1))
-        return web.Response(text=await media_watch(id), content_type='text/html')
+        return await media_streamer(request, id, secure_hash)
     except FIleNotFound as e:
         raise web.HTTPNotFound(text=e.message)
     except (AttributeError, BadStatusLine, ConnectionResetError):
