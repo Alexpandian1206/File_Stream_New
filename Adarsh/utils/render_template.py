@@ -34,6 +34,10 @@ async def render_page(id, secure_hash):
                     heading = 'Download {}'.format(file_data.file_name)
                     file_size = humanbytes(int(u.headers.get('Content-Length')))
                     html = (await r.read()) % (heading, file_data.file_name, src, file_size)
+                    html = html.replace('{file_id}', str(id))
+                    html = html.replace('{secondbot}', Var.SECOND_BOTUSERNAME)
+                    
+
     return html
 
 async def media_watch(id):
@@ -47,6 +51,8 @@ async def media_watch(id):
             heading = 'Watch - {}'.format(file_name)
             tag = file_data.mime_type.split('/')[0].strip()
             html = (await r.read()).replace('tag', tag) % (heading, file_name, src)
+            html = html.replace('{file_id}', str(id))
+            html = html.replace('{secondbot}', Var.SECOND_BOTUSERNAME)
     else:
         html = '<h1>This is not streamable file</h1>'
     return html
