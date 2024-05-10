@@ -40,7 +40,7 @@ async def media_watch(id):
     file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
     file_name, mime_type = file_data.file_name, file_data.mime_type
     secure_hash = file_data.unique_id[:6]
-    src = urllib.parse.urljoin(Var.URL, f'{secure_hash}{str(id)}')
+    src = urllib.parse.urljoin(Var.URL, f'{str(id)}')
     tag = file_data.mime_type.split('/')[0].strip()
     if tag == 'video':
         async with aiofiles.open('Adarsh/template/req.html') as r:
