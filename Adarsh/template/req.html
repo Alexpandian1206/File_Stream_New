@@ -22,9 +22,7 @@
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.tailwindcss.com"></script>    
-    <script>
-        const telegramBotUsername = 'Files_123_bot';
-    </script>
+    
     <style>
       marquee{
       font-size: 20px;
@@ -374,7 +372,7 @@
         const numberRegex = /\/watch\/(\d+)\//; // Regular expression to match the number after "/watch/"
         const match = videolink.match(numberRegex);
         const number = match ? match[1] : '';
-        const Rishi = `https://telegram.me/${telegramBotUsername}?start=file_${number}`;
+        const Rishi = `https://telegram.me/{{secondbot}}?start=file_{{file_id}}`;
 
 
         function vlc_player() {
