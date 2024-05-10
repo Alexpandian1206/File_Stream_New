@@ -16,6 +16,7 @@ from Adarsh.server.exceptions import FIleNotFound, InvalidHash
 from Adarsh import StartTime, __version__
 from ..utils.time_format import get_readable_time
 from ..utils.custom_dl import ByteStreamer
+from Adarsh.utils.file_properties import get_file_ids
 from Adarsh.utils.render_template import render_page, media_watch, batch_page
 from Adarsh.vars import Var
 
@@ -96,7 +97,12 @@ async def stream_handler(request: web.Request):
             id = int(match.group(2))
         else:
             id = int(re.search(r"(\d+)(?:\/\S+)?", path).group(1))
-        return await media_streamer(request, id, secure_hash)
+        try:
+            file_data=await get_file_ids(StreamBot, int(Var.BIN_CHANNEL), int(id))
+            secure_hash = file_data.unique_id[:6]
+            return await media_streamer(request, id, secure_hash)
+        except FIleNotFound as e:
+            raise web.HTTPNotFound(text=e.message)
     except FIleNotFound as e:
         raise web.HTTPNotFound(text=e.message)
     except (AttributeError, BadStatusLine, ConnectionResetError):
