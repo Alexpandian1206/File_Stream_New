@@ -22,11 +22,17 @@ async def render_page(id, secure_hash):
             heading = 'Watch {}'.format(file_data.file_name)
             tag = file_data.mime_type.split('/')[0].strip()
             html = (await r.read()).replace('tag', tag) % (heading, file_data.file_name, src)
+            html = html.replace('{file_id}', str(id))
+            html = html.replace('{secondbot}', Var.SECOND_BOTUSERNAME)
+                    
     elif str(file_data.mime_type.split('/')[0].strip()) == 'audio':
         async with aiofiles.open('Adarsh/template/req.html') as r:
             heading = 'Listen {}'.format(file_data.file_name)
             tag = file_data.mime_type.split('/')[0].strip()
             html = (await r.read()).replace('tag', tag) % (heading, file_data.file_name, src)
+            html = html.replace('{file_id}', str(id))
+                    html = html.replace('{secondbot}', Var.SECOND_BOTUSERNAME)
+                    
     else:
         async with aiofiles.open('Adarsh/template/dl.html') as r:
             async with aiohttp.ClientSession() as s:
