@@ -31,7 +31,7 @@ async def render_page(id, secure_hash):
             tag = file_data.mime_type.split('/')[0].strip()
             html = (await r.read()).replace('tag', tag) % (heading, file_data.file_name, src)
             html = html.replace('{file_id}', str(id))
-                    html = html.replace('{secondbot}', Var.SECOND_BOTUSERNAME)
+            html = html.replace('{secondbot}', Var.SECOND_BOTUSERNAME)
                     
     else:
         async with aiofiles.open('Adarsh/template/dl.html') as r:
