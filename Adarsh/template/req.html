@@ -372,7 +372,7 @@
         const numberRegex = /\/watch\/(\d+)\//; // Regular expression to match the number after "/watch/"
         const match = videolink.match(numberRegex);
         const number = match ? match[1] : '';
-        const Rishi = `https://telegram.me/{{secondbot}}?start=file_{{file_id}}`;
+        const Rishi = `https://telegram.me/{secondbot}?start=file_{file_id}`;
 
 
         function vlc_player() {
